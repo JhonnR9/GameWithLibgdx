@@ -33,8 +33,13 @@ public class ResourceManager implements AssetErrorListener {
         textureParams.minFilter = Texture.TextureFilter.Linear;
         textureParams.magFilter = Texture.TextureFilter.Linear;
 
+        TextureLoader.TextureParameter texturePixelParams = new TextureLoader.TextureParameter();
+        textureParams.minFilter = Texture.TextureFilter.Nearest;
+        textureParams.magFilter = Texture.TextureFilter.Nearest;
+
         assetManager.load(defaultSkin, Skin.class);
         assetManager.load("badlogic.jpg", Texture.class, textureParams);
+        assetManager.load("character.png", Texture.class, texturePixelParams);
         assetManager.finishLoading();
 
     }
