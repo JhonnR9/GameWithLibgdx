@@ -66,6 +66,7 @@ public class Object extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         if (isVisible() && textureRegion != null) {
+            batch.setColor(getColor());
             batch.draw(textureRegion, getX(), getY(), getOriginX(), getOriginY(),
                     getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
         }
