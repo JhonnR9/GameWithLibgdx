@@ -22,15 +22,11 @@ public class RenderSystem extends IteratingSystem {
         SpriteComponent spriteComponent = entity.getComponent(SpriteComponent.class);
 
 
-        if (transform.getScale().x <= 4) {
-            transform.setScale(transform.getScale().x + deltaTime);
-        }else {
-            transform.setScale(0);
-        }
-            Vector2 newPosition = spriteComponent.getDebugPosition(transform);
+        Vector2 newPosition = spriteComponent.getDebugPosition(transform);
         spriteComponent.setPosition(newPosition.x, newPosition.y);
         spriteComponent.setScale(transform.getScale().x, transform.getScale().y);
         spriteComponent.setRotation(spriteComponent.getRotation() + deltaTime * 20);
+
         spriteComponent.draw(batch);
 
     }

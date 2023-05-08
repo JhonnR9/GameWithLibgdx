@@ -19,8 +19,7 @@ public class AnimationComponent implements Component {
         this.texture = texture;
     }
 
-    private TextureRegion frame;
-   private final Map<String, Animation<TextureRegion>> animations = new HashMap<>();
+    private final Map<String, Animation<TextureRegion>> animations = new HashMap<>();
 
     private float elapsedTime;
     private  String currentAnimationKey;
@@ -38,24 +37,20 @@ public class AnimationComponent implements Component {
     }
 
     public TextureRegion getFrame(String animationName) {
-        frame = animations.get(animationName).getKeyFrame(elapsedTime);
-        return frame;
+        return animations.get(animationName).getKeyFrame(elapsedTime);
     }
 
 
 
     private TextureRegion[] createTexturesRegions(AnimationConfig ac) {
         TextureRegion[][] frames = TextureRegion.split(texture, ac.getFrameWidth(), ac.getFrameHeight());
-
         TextureRegion[] textureRegions = new TextureRegion[ac.getColumns() * ac.getRows()];
-
         int index = 0;
         for (int row = ac.getStartY(); row < ac.getStartY() + ac.getRows(); row++) {
             for (int col = ac.getStartX(); col < ac.getStartX() + ac.getColumns(); col++) {
                 textureRegions[index++] = frames[row][col];
             }
         }
-
         return textureRegions;
     }
 
@@ -66,7 +61,6 @@ public class AnimationComponent implements Component {
         } else {
             animation.setPlayMode(Animation.PlayMode.NORMAL);
         }
-
         animations.put(animationKey, animation) ;
 
     }

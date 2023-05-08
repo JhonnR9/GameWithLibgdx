@@ -21,6 +21,7 @@ public class Player extends Entity implements Component {
         transformComponent = new TransformComponent();
         animationComponent = new AnimationComponent();
         AnimationConfig ac = new AnimationConfig(4,1,16,16);
+
         animationComponent.setTexture(spriteComponent.getTexture());
         animationComponent.createAnimation(ac,"walk");
         animationComponent.setCurrentAnimationKey("walk");
