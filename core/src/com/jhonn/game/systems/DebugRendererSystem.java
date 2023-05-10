@@ -1,4 +1,4 @@
-package me.jhonn.systems;
+package com.jhonn.game.systems;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
@@ -7,14 +7,14 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
-import me.jhonn.Components.DebugComponent;
-import me.jhonn.Components.SpriteComponent;
-import me.jhonn.Components.TransformComponent;
+import com.jhonn.game.Components.SpriteComponent;
+import com.jhonn.game.Components.DebugComponent;
+import com.jhonn.game.Components.TransformComponent;
 
-public class DebugSystem extends IteratingSystem {
+public class DebugRendererSystem extends IteratingSystem {
     private final ShapeRenderer shapeRenderer;
 
-    public DebugSystem(ShapeRenderer shapeRenderer) {
+    public DebugRendererSystem(ShapeRenderer shapeRenderer) {
         super(Family.all(TransformComponent.class, DebugComponent.class, SpriteComponent.class).get());
         this.shapeRenderer = shapeRenderer;
     }

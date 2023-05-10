@@ -1,17 +1,20 @@
-package me.jhonn;
+package com.jhonn.game;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import me.jhonn.Components.SpriteComponent;
-import me.jhonn.entities.Player;
-import me.jhonn.systems.AnimationSystem;
-import me.jhonn.systems.DebugSystem;
-import me.jhonn.systems.RenderSystem;
-import me.jhonn.utils.ResourceManager;
+import com.badlogic.gdx.physics.box2d.*;
+import com.jhonn.game.systems.InputSystem;
+import com.jhonn.game.utils.ResourceManager;
+import com.jhonn.game.systems.AnimationSystem;
+import com.jhonn.game.systems.DebugRendererSystem;
+import com.jhonn.game.systems.SpriteRendererSystem;
+import com.jhonn.game.entities.Player;
+
 
 public class GameEngine extends ApplicationAdapter {
     private ResourceManager resourceManager;
@@ -20,37 +23,23 @@ public class GameEngine extends ApplicationAdapter {
     private OrthographicCamera camera;
     private Engine engine;
 
-
     @Override
     public void create() {
+        Box2D.init();
         startGame();
-        addSystem();
-
-
-        Player player0 = new Player(1,1,resourceManager);
-        player0.getComponent(SpriteComponent.class).setColor(Color.CYAN);
-        Player player1 = new Player(4,1,resourceManager);
-        player1.getComponent(SpriteComponent.class).setColor(Color.MAGENTA);
-        Player player2 = new Player(7,1,resourceManager);
-        player2.getComponent(SpriteComponent.class).setColor(Color.YELLOW);
-        Player player3 = new Player(10,1,resourceManager);
-        player3.getComponent(SpriteComponent.class).setColor(Color.RED);
-        Player player4 = new Player(13,1,resourceManager);
-        player4.getComponent(SpriteComponent.class).setColor(Color.GREEN);
-
+        addSystems();
+        Player player0 = new Player(1, 1, resourceManager);
         engine.addEntity(player0);
-        engine.addEntity(player1);
-        engine.addEntity(player2);
-        engine.addEntity(player3);
-        engine.addEntity(player4);
-
 
     }
 
-    private void addSystem() {
-        engine.addSystem(new RenderSystem(bath));
-        engine.addSystem(new DebugSystem(shapeRenderer));
+
+
+    private void addSystems() {
+        engine.addSystem(new SpriteRendererSystem(bath));
+        engine.addSystem(new DebugRendererSystem(shapeRenderer));
         engine.addSystem(new AnimationSystem());
+        engine.addSystem(new InputSystem());
     }
 
     private void startGame() {
@@ -62,6 +51,8 @@ public class GameEngine extends ApplicationAdapter {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 16, 9);
         engine = new Engine();
+        InputMultiplexer inputMultiplexer = new InputMultiplexer();
+        Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
 
@@ -74,7 +65,6 @@ public class GameEngine extends ApplicationAdapter {
 
         bath.setProjectionMatrix(camera.combined);
         shapeRenderer.setProjectionMatrix(camera.combined);
-
 
         bath.begin();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
@@ -92,5 +82,6 @@ public class GameEngine extends ApplicationAdapter {
         resourceManager.dispose();
         shapeRenderer.dispose();
         bath.dispose();
+
     }
 }

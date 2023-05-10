@@ -1,9 +1,10 @@
-package me.jhonn;
+package com.game;
 
 import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.jhonn.game.GameEngine;
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override

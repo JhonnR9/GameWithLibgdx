@@ -1,4 +1,4 @@
-package me.jhonn.utils;
+package com.jhonn.game.utils;
 
 public class AnimationConfig {
     private int columns, rows, frameWidth, frameHeight, startX = 0, startY = 0;

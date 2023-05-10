@@ -1,4 +1,4 @@
-package me.jhonn.utils;
+package com.jhonn.game.utils;
 
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;

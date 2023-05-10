@@ -1,4 +1,4 @@
-package me.jhonn.Components;
+package com.jhonn.game.Components;
 
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.graphics.Texture;
